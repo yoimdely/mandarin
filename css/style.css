@@ -87,7 +87,7 @@ a {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(16px);
-  background: rgba(252, 252, 255, 0.86);
+  background: rgba(252, 252, 255, 0.92);
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
@@ -95,7 +95,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
   padding: 10px 0;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .logo {
@@ -114,16 +121,21 @@ a {
   font-size: 18px;
 }
 
+.header__tagline {
+  font-size: 11px;
+  color: #6b7280;
+}
+
 /* Navigation */
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .nav__link {
-  font-size: 14px;
+  font-size: 13px;
   color: #4b5563;
   padding: 6px 10px;
   border-radius: 999px;
@@ -169,14 +181,14 @@ a {
 /* Hero */
 
 .hero {
-  padding: 80px 0 64px;
+  padding: 72px 0 56px;
 }
 
 .hero__content {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.05fr);
   gap: 40px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .hero__badge {
@@ -212,45 +224,103 @@ a {
   color: #4b5563;
 }
 
-.hero__highlights {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 18px;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 16px;
-  font-size: 14px;
-  color: #374151;
+.hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.hero-pill {
+  min-width: 110px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  box-shadow: 0 12px 30px rgba(148, 163, 184, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-pill__value {
+  font-weight: 700;
+  font-size: 16px;
+  color: #111827;
+}
+
+.hero-pill__label {
+  font-size: 11px;
+  color: #6b7280;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .hero__note {
-  font-size: 12px;
+  font-size: 11px;
   color: #6b7280;
-  max-width: 520px;
+  max-width: 540px;
+}
+
+/* Hero right: media + form */
+
+.hero__right {
+  display: grid;
+  gap: 16px;
+}
+
+.hero-media {
+  border-radius: 20px;
+  background: radial-gradient(circle at 0% 0%, rgba(251, 146, 60, 0.18), transparent 55%),
+              radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.16), transparent 60%),
+              #0b1120;
+  color: #e5e7eb;
+  padding: 14px 14px 12px;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.55);
+}
+
+.hero-media__badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #e5e7eb;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.hero-media__frame {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.8);
+  background: #000;
+}
+
+.hero-media__frame iframe {
+  width: 100%;
+  height: 210px;
+}
+
+.hero-media__caption {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #e5e7eb;
+  opacity: 0.86;
 }
 
 /* Hero card */
 
-.hero__right {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .hero-card {
   width: 100%;
-  max-width: 360px;
-  padding: 22px 22px 24px;
+  padding: 20px 20px 22px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.16),
+    0 20px 52px rgba(15, 23, 42, 0.16),
     0 0 0 1px rgba(148, 163, 184, 0.22);
 }
 
@@ -310,7 +380,7 @@ a {
 /* Sections */
 
 .section {
-  padding: 64px 0;
+  padding: 56px 0;
 }
 
 .section--soft {
@@ -474,44 +544,30 @@ a {
   color: #111827;
 }
 
-/* Layouts */
+/* Video frame */
 
-.layouts-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 28px;
+.video-frame {
+  max-width: 880px;
+  margin: 0 auto;
 }
 
-.layout-card {
-  padding: 16px 16px 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  box-shadow: 0 18px 40px rgba(148, 163, 184, 0.28);
+.video-frame__inner {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.55);
 }
 
-.layout-card__title {
-  margin: 0 0 6px;
-  font-size: 16px;
-  color: #111827;
+.video-frame__inner iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.layout-card__range {
-  margin: 0 0 10px;
-  font-size: 13px;
-  color: #4b5563;
-}
-
-.cta-row {
-  margin-top: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-  justify-content: center;
-  font-size: 14px;
-}
+/* Layouts / gallery-like cards (если нужно будет) */
 
 /* Forms */
 
@@ -562,12 +618,6 @@ a {
   margin: 4px 0 0;
   font-size: 11px;
   color: #6b7280;
-}
-
-.form__success {
-  margin: 6px 0 0;
-  font-size: 12px;
-  color: #15803d;
 }
 
 .form--card {
@@ -644,14 +694,14 @@ a {
 
 .footer__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.9fr);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 0.9fr);
   gap: 32px;
   padding: 28px 16px 20px;
 }
 
 .footer__text {
   font-size: 12px;
-  max-width: 380px;
+  max-width: 420px;
 }
 
 .footer__title {
@@ -689,7 +739,7 @@ a {
   }
 
   .hero__right {
-    justify-content: flex-start;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .section__inner,
@@ -701,7 +751,6 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .layouts-grid,
   .gallery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -714,6 +763,10 @@ a {
 @media (max-width: 720px) {
   .header__inner {
     padding: 10px 0;
+  }
+
+  .header__tagline {
+    font-size: 10px;
   }
 
   .nav {
@@ -750,15 +803,14 @@ a {
     padding-top: 64px;
   }
 
-  .hero__highlights {
-    grid-template-columns: minmax(0, 1fr);
+  .hero-media__frame iframe {
+    height: 190px;
   }
 
   .cards-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .layouts-grid,
   .gallery-grid {
     grid-template-columns: minmax(0, 1fr);
   }
