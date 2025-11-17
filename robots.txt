@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yoimdely.github.io/mandarin/sitemap.xml
-
-Host: yoimdely.github.io
+Sitemap: https://xn----7sbabnbdfjy4bndg0bg.xn--p1ai/sitemap.xml
+Host: мандаринг-гарден.рф
