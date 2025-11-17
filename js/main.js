@@ -15,73 +15,70 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Smooth scroll for internal links (extra safety for older browsers)
+  // Smooth scroll for internal links
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href').substring(1);
       const target = document.getElementById(targetId);
       if (target) {
         e.preventDefault();
+        const offset = 70;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
         window.scrollTo({
-          top: target.offsetTop - 70,
+          top,
           behavior: 'smooth'
         });
       }
     });
   });
 
-  // Fake form submit (no backend on GitHub Pages)
-  function bindForm(id, successId) {
-    const form = document.getElementById(id);
+  // Year in footer
+  const footerYear = document.getElementById('footerYear');
+  if (footerYear) {
+    const year = new Date().getFullYear();
+    footerYear.textContent = `© ${year} Mandarin Garden Sochi. Все права защищены.`;
+  }
+
+  // Forms -> mailto: yoimdely@gmail.com
+  function handleMailForm(formId, successId, subjectPrefix) {
+    const form = document.getElementById(formId);
     const success = document.getElementById(successId);
 
     if (!form || !success) return;
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
+      const formData = new FormData(form);
+      const name = formData.get('name') || '';
+      const phone = formData.get('phone') || formData.get('phone / мессенджер') || '';
+      const email = formData.get('email') || '';
+      const budget = formData.get('budget') || '';
+      const type = formData.get('type') || '';
+      const messenger = formData.get('messenger') || '';
+      const comment = formData.get('comment') || '';
+
+      let body = '';
+      body += `Имя: ${name}\n`;
+      if (phone) body += `Телефон / мессенджер: ${phone}\n`;
+      if (email) body += `E-mail: ${email}\n`;
+      if (messenger) body += `Предпочтительный мессенджер: ${messenger}\n`;
+      if (budget) body += `Бюджет: ${budget} млн ₽\n`;
+      if (type) body += `Формат апартаментов: ${type}\n`;
+      if (comment) body += `Комментарий: ${comment}\n`;
+
+      const subject = `${subjectPrefix} — ${name || 'заявка с сайта'}`;
+      const mailto = `mailto:yoimdely@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailto;
       success.hidden = false;
+
       setTimeout(function () {
         success.hidden = true;
-        form.reset();
-      }, 4000);
+      }, 5000);
     });
   }
 
-  bindForm('heroForm', 'heroFormSuccess');
-  bindForm('contactForm', 'contactFormSuccess');
-
-  // ROI calculator
-  const calcBtn = document.getElementById('calcBtn');
-  const priceField = document.getElementById('price');
-  const yieldField = document.getElementById('yield');
-  const yearsField = document.getElementById('years');
-  const resultBlock = document.getElementById('calcResult');
-
-  function formatNumber(num) {
-    return num.toLocaleString('ru-RU', { maximumFractionDigits: 1 });
-  }
-
-  if (calcBtn && priceField && yieldField && yearsField && resultBlock) {
-    calcBtn.addEventListener('click', function () {
-      const price = parseFloat(priceField.value.replace(',', '.')) || 0;
-      const rate = (parseFloat(yieldField.value.replace(',', '.')) || 0) / 100;
-      const years = parseInt(yearsField.value, 10) || 0;
-
-      if (!price || !rate || !years) {
-        resultBlock.textContent = 'Пожалуйста, заполните все поля для расчёта.';
-        return;
-      }
-
-      const priceRub = price * 1_000_000;
-      const annualIncome = priceRub * rate;
-      const totalIncome = annualIncome * years;
-      const roiPercent = (totalIncome / priceRub) * 100;
-
-      resultBlock.innerHTML =
-        'Ориентировочный годовой чистый доход: <strong>' + formatNumber(annualIncome / 1_000_000) + ' млн ₽</strong><br>' +
-        'Доход за ' + years + ' ' + (years === 1 ? 'год' : (years >= 2 && years <= 4 ? 'года' : 'лет')) +
-        ': <strong>' + formatNumber(totalIncome / 1_000_000) + ' млн ₽</strong><br>' +
-        'Совокупная доходность за период: <strong>' + formatNumber(roiPercent) + ' %</strong> (без учёта роста стоимости актива).';
-    });
-  }
+  handleMailForm('heroForm', 'heroFormSuccess', 'Заявка на подбор апартаментов Mandarin Garden');
+  handleMailForm('contactForm', 'contactFormSuccess', 'Заявка с блока Контакты Mandarin Garden');
 });

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yoimdely.github.io/mandarin/sitemap.xml
+
+Host: yoimdely.github.io
