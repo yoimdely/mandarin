@@ -27,6 +27,14 @@
   <meta name="twitter:description" content="Резиденции и гостиничные номера у лучшего пляжа региона Mandarin beach в Адлере. Консультации от независимого сервиса «Отдел продаж новостроек Сочи».">
   <meta name="twitter:image" content="https://yoimdely.github.io/mandarin/images/og-image.jpg">
 
+  <!-- Leaflet (карта) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- Swiper (слайдер медиа) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
   <link rel="stylesheet" href="css/style.css">
 
   <!-- Structured data: комплекс -->
@@ -58,8 +66,8 @@
     ],
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 43.430,
-      "longitude": 39.924
+      "latitude": 43.422249,
+      "longitude": 39.924556
     }
   }
   </script>
@@ -116,8 +124,10 @@
 </head>
 <body>
   <div class="page">
-    <div class="page__bg page__bg--one"></div>
-    <div class="page__bg page__bg--two"></div>
+    <!-- Плавная анимация фона по всему сайту -->
+    <div class="bg fx fx--1"></div>
+    <div class="bg fx fx--2"></div>
+    <div class="bg fx fx--3"></div>
 
     <header class="header">
       <div class="container header__inner">
@@ -156,7 +166,8 @@
             </h1>
             <p class="hero__subtitle">
               Резиденции и номера Ultra Premium в отеле у пляжа Mandarin beach (≈2 га): гастрономия от Novikov Group
-              и Family Garden, курортная инфраструктура 5★, оператор Alean и финансирование проекта банком ДОМ.РФ.
+              и Family Garden, курортная инфраструктура 5★ и оператор Alean.
+              Оставьте заявку сегодня — получите <strong>спецусловия на старте продаж</strong>.
             </p>
             <div class="hero__pills">
               <div class="hero-pill">
@@ -173,70 +184,32 @@
               </div>
             </div>
             <div class="hero__actions">
-              <a href="#contacts" class="btn btn--primary">Получить подборку резиденций</a>
+              <a href="#contacts" class="btn btn--primary">Получить спецусловия</a>
               <a href="#video" class="btn btn--secondary">Смотреть видеообзор</a>
             </div>
             <p class="hero__note">
               Информация предоставляется независимым сервисом «Отдел продаж новостроек Сочи» и не является официальной
-              информацией застройщика или управляющей компании. Все условия и характеристики следует уточнять дополнительно.
+              информацией застройщика или управляющей компании. Не является публичной офертой.
             </p>
           </div>
           <div class="hero__right">
-            <div class="hero-media">
-              <div class="hero-media__badge">Видеообзор комплекса</div>
-              <div class="hero-media__frame">
-                <iframe src="https://vkvideo.ru/video_ext.php?oid=-189300654&id=456239018&hash=acc7b0219b9a4591&autoplay=1"
-                        title="Видеообзор Mandarin Garden"
-                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                        frameborder="0" allowfullscreen></iframe>
-              </div>
-              <div class="hero-media__caption">Краткий видеотур по концепции Mandarin Garden.</div>
-            </div>
-            <div class="hero-card">
-              <h2 class="hero-card__title">Заявка на подбор резиденции</h2>
-              <p class="hero-card__text">Заполните форму — специалист «Отдел продаж новостроек Сочи» свяжется с вами, отправит планировки и условия.</p>
-              <form class="form" id="heroForm" action="https://api.web3forms.com/submit" method="POST">
-                <input type="hidden" name="access_key" value="54057ac7-1bfb-438f-b5fc-8545143e6b3d">
-                <input type="hidden" name="subject" value="Заявка с hero-блока — Mandarin Garden">
-                <input type="hidden" name="from_name" value="Отдел продаж новостроек Сочи">
-                <input type="hidden" name="redirect" value="https://yoimdely.github.io/mandarin/">
-                <label class="form__field">
-                  <span>Имя*</span>
-                  <input type="text" name="name" required>
-                </label>
-                <label class="form__field">
-                  <span>Телефон / мессенджер*</span>
-                  <input type="text" name="phone" required>
-                </label>
-                <label class="form__field">
-                  <span>E-mail</span>
-                  <input type="email" name="email">
-                </label>
-                <label class="form__field">
-                  <span>Бюджет, млн ₽ (ориентир)</span>
-                  <input type="number" name="budget" min="5" max="500">
-                </label>
-                <label class="form__field">
-                  <span>Комментарий</span>
-                  <textarea name="message" rows="3" placeholder="Тип лота, сроки покупки, ипотека, дистанционная сделка…"></textarea>
-                </label>
-                <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
-                <p class="form__policy">
-                  Отправляя форму, вы соглашаетесь на обработку персональных данных и передачу заявки сервису
-                  «Отдел продаж новостроек Сочи».
-                </p>
-              </form>
+            <!-- Вместо видео — стильная картинка -->
+            <div class="hero-image">
+              <picture>
+                <source srcset="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1600">
+                <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Современный фасад комплекса у моря">
+              </picture>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- VIDEO SECTION (отдельный якорь под меню) -->
+      <!-- VIDEO SECTION (единственный блок с видео) -->
       <section class="section section--soft" id="video">
         <div class="container">
           <h2 class="section__title section__title--center">Видеообзор концепции Mandarin Garden</h2>
           <p class="section__subtitle section__subtitle--center">
-            Узнайте ключевые идеи проекта Mandarin Garden: расположение у пляжа Mandarin beach, гастрономическая концепция,
+            Узнайте ключевые идеи проекта Mandarin Garden: расположение у пляжа Mandarin beach, гастрономическую концепцию,
             инфраструктуру 5★ и подход к управлению комплексом.
           </p>
           <div class="video-frame">
@@ -337,12 +310,12 @@
             <article class="card">
               <h3 class="card__title">Просторные форматы</h3>
               <p class="card__text">
-                Номера и резиденции сильно больше типовых — от 55 м², с продуманной планировкой и возможностью организации
+                Номера и резиденции значительно больше типовых — от 55 м², с продуманной планировкой и возможностью организации
                 террас и зон для отдыха.
               </p>
             </article>
             <article class="card">
-              <h3 class="card__title">Консультация без привязки к застройщику</h3>
+              <h3 class="card__title">Независимая консультация</h3>
               <p class="card__text">
                 «Отдел продаж новостроек Сочи» — независимый консультационный сервис. По запросу можно рассмотреть альтернативные
                 объекты в Адлере и Сочи для сравнения.
@@ -352,7 +325,7 @@
         </div>
       </section>
 
-      <!-- LOCATION -->
+      <!-- LOCATION с картой -->
       <section class="section" id="location">
         <div class="container section__inner section__inner--two">
           <div>
@@ -374,10 +347,12 @@
             </p>
           </div>
           <div class="map-card">
-            <div class="map-card__map">
-              <p>Здесь можно встроить интерактивную карту (Яндекс / Google) с отметкой комплекса и пляжа Mandarin beach.</p>
-            </div>
+            <div id="map" class="map"></div>
             <div class="map-card__info">
+              <div class="map-card__row">
+                <span>Координаты:</span>
+                <strong>43.422249, 39.924556</strong>
+              </div>
               <div class="map-card__row">
                 <span>Адрес комплекса:</span>
                 <strong>Россия, Краснодарский край, г. Сочи, Адлер, ул. Демократическая, 18</strong>
@@ -391,7 +366,7 @@
         </div>
       </section>
 
-      <!-- GALLERY / MEDIA -->
+      <!-- GALLERY / MEDIA как слайдер -->
       <section class="section section--soft" id="gallery">
         <div class="container">
           <h2 class="section__title section__title--center">Медиа о Mandarin Garden</h2>
@@ -399,23 +374,37 @@
             Визуальный контент носит ознакомительный характер. После получения официальных рендеров и фотографий их можно
             оперативно обновить на сайте.
           </p>
-          <div class="gallery-grid">
-            <figure class="gallery-item">
-              <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Современный фасад здания у воды">
-              <figcaption>Современная архитектура у воды (пример визуализации фасада).</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Лобби гостиницы с дизайнерским интерьером">
-              <figcaption>Лобби и общие зоны категории Ultra Premium (пример интерьера).</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="https://images.pexels.com/photos/2716396/pexels-photo-2716396.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Светлые апартаменты с видом на море">
-              <figcaption>Светлые резиденции с панорамным остеклением (пример номера).</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Бассейн и зона отдыха">
-              <figcaption>Бассейн и зона отдыха для гостей и резидентов (пример атмосферы комплекса).</figcaption>
-            </figure>
+
+          <div class="swiper media-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <figure class="gallery-item">
+                  <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Современный фасад здания у воды">
+                  <figcaption>Современная архитектура у воды (пример визуализации фасада).</figcaption>
+                </figure>
+              </div>
+              <div class="swiper-slide">
+                <figure class="gallery-item">
+                  <img src="https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Лобби гостиницы с дизайнерским интерьером">
+                  <figcaption>Лобби и общие зоны категории Ultra Premium (пример интерьера).</figcaption>
+                </figure>
+              </div>
+              <div class="swiper-slide">
+                <figure class="gallery-item">
+                  <img src="https://images.pexels.com/photos/2716396/pexels-photo-2716396.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Светлые апартаменты с видом на море">
+                  <figcaption>Светлые резиденции с панорамным остеклением (пример номера).</figcaption>
+                </figure>
+              </div>
+              <div class="swiper-slide">
+                <figure class="gallery-item">
+                  <img src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Бассейн и зона отдыха">
+                  <figcaption>Бассейн и зона отдыха для гостей и резидентов (пример атмосферы комплекса).</figcaption>
+                </figure>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
         </div>
       </section>
@@ -464,105 +453,11 @@
         </div>
       </section>
 
-      <!-- CONTACTS -->
+      <!-- CONTACTS: упрощённая форма -->
       <section class="section section--accent" id="contacts">
         <div class="container section__inner section__inner--two">
           <div>
-            <h2 class="section__title">Оставить заявку в «Отдел продаж новостроек Сочи»</h2>
+            <h2 class="section__title">Оставьте заявку сегодня — получите спецусловия</h2>
             <p>
-              Заполните форму — менеджер свяжется с вами, отправит актуальные материалы по Mandarin Garden и при необходимости
-              подготовит сравнение с другими объектами премиального сегмента на побережье.
-            </p>
-            <ul class="list">
-              <li>Подбор формата резиденции или номера под вашу задачу;</li>
-              <li>Актуальные цены и этапы реализации проекта;</li>
-              <li>Варианты ипотечных программ и рассрочек;</li>
-              <li>Сопровождение консультаций до сделки.</li>
-            </ul>
-          </div>
-          <div>
-            <form class="form form--card" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-              <input type="hidden" name="access_key" value="54057ac7-1bfb-438f-b5fc-8545143e6b3d">
-              <input type="hidden" name="subject" value="Заявка с блока Контакты — Mandarin Garden">
-              <input type="hidden" name="from_name" value="Отдел продаж новостроек Сочи">
-              <input type="hidden" name="redirect" value="https://yoimdely.github.io/mandarin/">
-              <label class="form__field">
-                <span>Имя*</span>
-                <input type="text" name="name" required>
-              </label>
-              <label class="form__field">
-                <span>Телефон*</span>
-                <input type="text" name="phone" required>
-              </label>
-              <label class="form__field">
-                <span>E-mail</span>
-                <input type="email" name="email">
-              </label>
-              <label class="form__field">
-                <span>Предпочтительный мессенджер</span>
-                <select name="messenger">
-                  <option value="">Выберите</option>
-                  <option value="Telegram">Telegram</option>
-                  <option value="WhatsApp">WhatsApp</option>
-                  <option value="Viber">Viber</option>
-                </select>
-              </label>
-              <label class="form__field">
-                <span>Бюджет покупки, млн ₽</span>
-                <input type="number" name="budget" min="5" max="500">
-              </label>
-              <label class="form__field">
-                <span>Комментарий</span>
-                <textarea name="message" rows="3" placeholder="Пожелания по формату, срокам, этапам платежей…"></textarea>
-              </label>
-              <button type="submit" class="btn btn--primary btn--full">Отправить заявку</button>
-              <p class="form__policy">
-                Отправляя форму, вы соглашаетесь на обработку персональных данных и передачу заявки независимому сервису
-                «Отдел продаж новостроек Сочи».
-              </p>
-            </form>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer__inner">
-        <div class="footer__col">
-          <div class="logo logo--footer">
-            <span class="logo__accent">Mandarin</span> Garden
-          </div>
-          <p class="footer__text">
-            Данный сайт не является официальным сайтом девелопера Family Garden Development, банка ДОМ.РФ, оператора Alean
-            или группы компаний Novikov Group. Ресурс принадлежит независимому сервису «Отдел продаж новостроек Сочи»
-            и носит информационный характер, не являясь публичной офертой.
-          </p>
-        </div>
-        <div class="footer__col">
-          <h3 class="footer__title">Информация о проекте</h3>
-          <ul class="footer__list">
-            <li>Формат: гостиничный комплекс Ultra Premium</li>
-            <li>Локация: Адлер, пляж Mandarin beach, ул. Демократическая, 18</li>
-            <li>Состав: 448 гостиничных номеров и 349 резиденций</li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h3 class="footer__title">Отдел продаж новостроек Сочи</h3>
-          <ul class="footer__list">
-            <li>Подбор объектов премиального сегмента в Сочи и Адлере</li>
-            <li>Сопровождение к сделке совместно с официальными партнёрами</li>
-            <li>По запросу — варианты альтернатив Mandarin Garden</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <div class="container footer__bottom-inner">
-          <span id="footerYear">© Mandarin Garden · Отдел продаж новостроек Сочи.</span>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+              Заполните форму — менеджер независимого сервиса «Отдел продаж новостроек Сочи» свяжется с вами, отправит
+              актуальные материалы по Mandarin Garde
