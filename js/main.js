@@ -32,18 +32,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Leaflet map init (Локация)
+  // Yandex Map init
   const mapEl = document.getElementById('map');
-  if (mapEl && typeof L !== 'undefined') {
-    const map = L.map('map').setView([43.422249, 39.924556], 16);
+  if (mapEl && typeof ymaps !== 'undefined') {
+    ymaps.ready(function () {
+      const center = [43.422249, 39.924556];
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+      const map = new ymaps.Map('map', {
+        center: center,
+        zoom: 16,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
 
-    L.marker([43.422249, 39.924556])
-      .addTo(map)
-      .bindPopup('Mandarin Garden · ул. Демократическая, 18');
+      const placemark = new ymaps.Placemark(
+        center,
+        {
+          balloonContent: 'Mandarin Garden · ул. Демократическая, 18'
+        },
+        {
+          preset: 'islands#orangeDotIcon'
+        }
+      );
+
+      map.geoObjects.add(placemark);
+    });
   }
 
   // Swiper slider (Медиа)
@@ -72,6 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const footerYear = document.getElementById('footerYear');
   if (footerYear) {
     const year = new Date().getFullYear();
-    footerYear.textContent = `© ${year} Mandarin Garden · Отдел продаж новостроек Сочи.`;
+    footerYear.textContent = `© ${year} Mandarin Garden · подбор лотов в новостройках Сочи.`;
   }
 });
