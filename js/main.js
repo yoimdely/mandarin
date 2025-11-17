@@ -32,6 +32,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Leaflet map init (Локация)
+  const mapEl = document.getElementById('map');
+  if (mapEl && typeof L !== 'undefined') {
+    const map = L.map('map').setView([43.422249, 39.924556], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([43.422249, 39.924556])
+      .addTo(map)
+      .bindPopup('Mandarin Garden · ул. Демократическая, 18');
+  }
+
+  // Swiper slider (Медиа)
+  if (typeof Swiper !== 'undefined' && document.querySelector('.media-slider')) {
+    new Swiper('.media-slider', {
+      loop: true,
+      slidesPerView: 1.1,
+      spaceBetween: 16,
+      centeredSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      breakpoints: {
+        720: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  }
+
   // Year in footer
   const footerYear = document.getElementById('footerYear');
   if (footerYear) {
